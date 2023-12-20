@@ -1,8 +1,8 @@
 name = "infinex-omnibus"
-version = "0.0.1-1"
+version = "0.0.1-2"
 description = "Infinex Omnibus"
 
-include = ['./set-revenue.pool.toml']
+include = ['./updates/base-goerli.toml']
 
 [provision.infinex]
 options.OWNER = "0x3963Cd1433Afc67Db4907C78563b9Fc1D4C782b6"
