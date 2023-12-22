@@ -33,8 +33,8 @@ When a deployment is successful the last step is to publish it to Cannon. It can
 `pnpm cannon publish infinex-multichain:VERSION --chain-id CHAIN_ID --private-key PRIVATE_KEY`
 
 with:
-	- VERSION: the version of the package. Eg: `infinex-multichain:0.0.1`.
-	- PRIVATE_KEY: a wallet owning the rights to publish to the Cannon registry.
+- VERSION: the version of the package. Eg: `infinex-multichain:0.0.1`.
+- PRIVATE_KEY: a wallet owning the rights to publish to the Cannon registry.
 
 Note: Publishing to Cannon registry happens on Ethereum Mainnet, meaning the wallet needs to have ETH, even if the deployment happened on another chain.
 
