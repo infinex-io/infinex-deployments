@@ -36,7 +36,7 @@ with:
 - VERSION: the version of the package. Eg: `infinex-multichain:0.0.1`.
 - PRIVATE_KEY: a wallet owning the rights to publish to the Cannon registry.
 
-Note: Publishing to Cannon registry happens on Ethereum Mainnet, meaning the wallet needs to have ETH, even if the deployment happened on another chain.
+Note: publishing to Cannon registry happens on Ethereum Mainnet, meaning the wallet needs to have ETH, even if the deployment happened on another chain.
 
 
 ## Deployment and actions involving a Multisig
@@ -49,7 +49,7 @@ Note: Publishing to Cannon registry happens on Ethereum Mainnet, meaning the wal
 
 - Go to https://usecannon.com/deploy
 
-- In the settings section (the cogwheel icon in the top right), paste the IPFS URL used for the deployment.
+- In the settings section (the cogwheel icon in the top right), paste the IPFS URL used for the deployment. Note: this is the IPFS used in the local cannon config, not the IPFS which was just pinned.
 
 - In the `Queue Cannonfile` tab, provide:
 	- Cannonfile: the Github URL pointing to the toml file used with the deployment. Note, because of a current caching issue, it is usually safer to use a new branch every time. This branch can then be merged after the deployment is complete. Make sure the Github repository is public otherwise the website won't be able to access the file.
