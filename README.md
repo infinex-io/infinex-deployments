@@ -7,16 +7,16 @@ This is a GitOps repo for deployment of the [Infinex](https://www.github.com/inf
 - Run `pnpm install` to install all the dependencies
 - Run `pnpm cannon setup` and ensure you have a reliable IPFS url for publishing.
 - After publishing new versions of the provisioned package [Infinex](https://usecannon.com/packages/infinex), bump the version throughout the cannonfiles to match.
-- If deploying to a new chain, create a new toml file following the  naming convention: `infinex-multichain-chain-toml`. Eg:
+- If deploying to a new chain, create a new toml file following the  naming convention: `infinex-multichain-chain-toml`.
 
-`infinex-multichain-base-goerli.toml`
+	`infinex-multichain-base-goerli.toml`
 
 Each network should have its own cannnonfile.
 - Add new settings and invoke actions as necessary.
 - Increment the version number and update the values in the network-specific multi-chain cannonfiles as desired. The main version should match Infinex version, and if it is a configuration change on the same version use a dash. Eg:
   Version: 3.3.5
   Version with config changes: 3.3.5-1
-- To make sure a toml file setup is correct the build command can be run using the `--dry-run` option. This will simulate a build and won't publish anything. Eg:
+- To make sure a toml file setup is correct the build command can be run using the `--dry-run` option. This will simulate a build and won't publish anything.
 
 `pnpm cannon build TOML_FILE --chain-id CHAIN_ID --provider-url PROVIDER_URL --dry-run`
 
