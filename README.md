@@ -9,9 +9,9 @@ This is a GitOps repo for deployment of the [Infinex](https://www.github.com/inf
 - After publishing new versions of the provisioned package [Infinex](https://usecannon.com/packages/infinex), bump the version throughout the cannonfiles to match.
 - If deploying to a new chain, create a new toml file following the  naming convention: `infinex-multichain-chain-toml`.
 
-	`infinex-multichain-base-goerli.toml`
+	Eg: `infinex-multichain-base-goerli.toml`
 
-Each network should have its own cannnonfile.
+	Each network should have its own cannnonfile.
 - Add new settings and invoke actions as necessary.
 - Increment the version number and update the values in the network-specific multi-chain cannonfiles as desired. The main version should match Infinex version, and if it is a configuration change on the same version use a dash. Eg:
   Version: 3.3.5
@@ -52,7 +52,7 @@ Note: Publishing to Cannon registry happens on Ethereum Mainnet, meaning the wal
 - In the settings section (the cogwheel icon in the top right), paste the IPFS URL used for the deployment.
 
 - In the `Queue Cannonfile` tab, provide:
-	- Cannonfile: the Github URL pointing to the TOML file used with the deployment. Note, because of a current caching issue, it is usually safer to use a new branch every time. This branch can then be merged after the deployment is complete. Make sure the Github repository is public otherwise the website won't be able to access the file.
+	- Cannonfile: the Github URL pointing to the toml file used with the deployment. Note, because of a current caching issue, it is usually safer to use a new branch every time. This branch can then be merged after the deployment is complete. Make sure the Github repository is public otherwise the website won't be able to access the file.
 	- Partial Deployment Data: the IPFS hash saved in the previous step.
 
 - Make sure that the website's network is switched to the correct chain (the one the deployment was targeting) and that a wallet with rights to execute (owner or signer in a multisig) is connected.
