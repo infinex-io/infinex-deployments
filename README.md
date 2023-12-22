@@ -61,8 +61,7 @@ Note: publishing to Cannon registry happens on Ethereum Mainnet, meaning the wal
 
 - In the "Sign & Execute" tab, the list of all transactions will be visible.
 
-- It is possible for the wallet with publishing rights to click on "Publish to Registry" in a transaction page.
-Note: As explained in the Publishing section, publishing to the Cannon registry will happen on Mainnet. So for the button to be enabled, the website will need to be connected on Ethereum Mainnet.
+- It is possible for the wallet with publishing rights to click on "Publish to Registry" in a transaction page. As explained in the Publishing section, publishing to the Cannon registry will happen on Mainnet. So for the button to be enabled, the website will need to be connected on Ethereum Mainnet.
 
 ## Verifying contracts
 
