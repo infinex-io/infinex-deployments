@@ -52,7 +52,7 @@ Note: publishing to Cannon registry happens on Ethereum Mainnet, meaning the wal
 - In the settings section (the cogwheel icon in the top right), paste the IPFS URL used for the deployment. Note: this is the IPFS hash used in the local cannon config, not the one which was pinned in the step before.
 
 - In the `Queue Cannonfile` tab, provide:
-	- Cannonfile: the Github URL pointing to the toml file used with the deployment. Note, because of a current caching issue, it is usually safer to use a new branch every time. This branch can then be merged after the deployment is complete. Make sure the Github repository is public otherwise the website won't be able to access the file.
+	- Cannonfile: the Github URL pointing to the toml file used with the deployment. Because of a current caching issue, it is usually safer to use a new branch every time. This branch can then be merged after the deployment is complete. Make sure the Github repository is public otherwise the website won't be able to access the file.
 	- Partial Deployment Data: the IPFS hash saved in the previous step.
 
 - Make sure that the website's network is switched to the correct chain (the one the deployment was targeting) and that a wallet with rights to execute (owner or signer in a multisig) is connected.
