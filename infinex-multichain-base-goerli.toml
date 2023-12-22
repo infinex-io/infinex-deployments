@@ -1,5 +1,5 @@
 name = "infinex-multichain"
-version = "0.0.1"
+version = "0.0.3"
 description = "Infinex MultiChain Deployments"
 
 
@@ -13,5 +13,5 @@ options.WITHDRAWAL_FEE = "<%= parseUnits(String(15), 18) %>"
 options.CIRCLE_BRIDGE = "0x877b8e8c9e2383077809787ED6F279ce01CB4cc8"
 options.CIRCLE_BRIDGE_DEST_DOMAIN = "0"
 options.USDC = "0x4967d1987930b2CD183dAB4B6C40B8745DD2eba1"
-options.SALT = "Infinex-Testnet-0.0.1"
+options.SALT = "Infinex-Testnet-0.0.3"
 source = "infinex:latest"
