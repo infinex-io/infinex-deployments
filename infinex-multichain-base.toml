@@ -1,0 +1,17 @@
+name = "infinex-multichain"
+version = "0.0.3"
+description = "Infinex MultiChain Deployments"
+
+
+[provision.infinex]
+options.OWNER = "0x24f5A599a40730dc0475eCE8dD41C4D3A4Ba4Bf3"
+options.REVENUE_POOL = "0x24f5A599a40730dc0475eCE8dD41C4D3A4Ba4Bf3"
+options.TRADING_FEE_POOL = "0x24f5A599a40730dc0475eCE8dD41C4D3A4Ba4Bf3"
+options.MAKER_FEE = "<%= parseEther('0.0008') %>"
+options.TAKER_FEE = "<%= parseEther('0.0008') %>"
+options.WITHDRAWAL_FEE = "<%= parseUnits(String(15), 6) %>"
+options.CIRCLE_BRIDGE = "0x1682Ae6375C4E4A97e4B583BC394c861A46D8962"
+options.CIRCLE_BRIDGE_DEST_DOMAIN = "0"
+options.USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+options.SALT = "Infinex-Mainnet-0.0.3"
+source = "infinex:latest"
