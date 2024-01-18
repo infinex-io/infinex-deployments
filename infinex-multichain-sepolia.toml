@@ -1,0 +1,8 @@
+name = "infinex-multichain"
+version = "0.0.4"
+preset = "O2"
+description = "Infinex MultiChain Deployments"
+
+
+[provision.infinex]
+source = "infinex:latest@O2"
