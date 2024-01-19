@@ -1,5 +1,5 @@
 name = "infinex-multichain"
-version = "0.0.4"
+version = "0.0.5"
 preset = "O2"
 description = "Infinex MultiChain Deployments"
 
