@@ -1,0 +1,56 @@
+name = "infinex-multichain"
+version = "0.0.10-3"
+preset = "O2"
+description = "Infinex MultiChain Deployments"
+
+[setting.OWNER]
+defaultValue = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+description = "The Council multisig"
+
+[setting.ACCOUNT_TYPE]
+description = "The code for a account type"
+defaultValue = "0" # does not include trading module
+ 
+[setting.WITHDRAWAL_FEE]
+description = "The withdrawal fee"
+defaultValue = "<%= parseEther('10') %>"
+
+
+[provision.infinex]
+options.SALT = "INFINEX_0_0_10-3"
+options.ACCOUNT_TYPE = "0" # This chain has no trading functionality (O2 preset)
+options.OWNER = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.REVENUE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.TRADING_FEE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.MINIMUM_BRIDGE_AMOUNT =  "<%= parseUnits(String(1), 6) %>"
+options.USDC = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238"
+options.CIRCLE_BRIDGE = "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
+options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
+options.CIRCLE_BRIDGE_DEST_DOMAIN = "6"
+options.WORMHOLE_CIRCLE_BRIDGE = "0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c"
+options.WORMHOLE_DESTINATION_DOMAIN_BASE = "10004"
+# Non Functional parameters - functionality not on this chain
+options.MAKER_FEE = "1"
+options.TAKER_FEE = "1"
+source = "infinex:latest@O2"
+
+# ---------- Setting Post deployment parameters  ---------- #
+
+[invoke.setInfinexProtocolConfigBeaconFee]
+target = ["infinex.InfinexProtocolConfigBeacon"]
+func = "setWithdrawalFee"
+args = [ "<%= settings.WITHDRAWAL_FEE %>"]
+from = "<%= settings.OWNER %>"
+depends = ["provision.infinex"]
+
+
+[invoke.AccountFactoryInitialize]
+target = ["infinex.AccountFactory"]
+func = "initialize"
+args = [
+    "<%= imports.infinex.contracts.InfinexProtocolConfigBeacon.address %>",
+    "<%= imports.infinex.contracts.InfinexProtocolConfigBeacon.address %>",
+    "<%= settings.ACCOUNT_TYPE %>",
+]
+depends = ["provision.infinex"]
+from = "<%= settings.OWNER %>"

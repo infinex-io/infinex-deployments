@@ -1,0 +1,46 @@
+name = "infinex-gp"
+version = "0.0.2"
+preset = "StW"
+description = "Infinex Governance Points Deployments"
+
+[setting.OWNER]
+defaultValue = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+description = "The Council multisig"
+
+[setting.STWPOINTS]
+defaultValue = "330000000"
+description = "The amount of STW points to be distributed"
+
+[provision.InfinexGovernancePoints]
+options.SALT = "INFINEX_0_0_10"
+options.CONTRACT_FACTORY = "0x103c4aC9FdF4d06Fea827Ad1dE6fde669038D39E" 
+options.OWNER = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.INFINEX_FORWARDER = "0x58F2fDbbbBC416e92d961ca36B35260258312095"
+options.USDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e" 
+options.PERPS_MARKET_PROXY = "0xE6C5f05C415126E6b81FCc3619f65Db2fCAd58D0"
+options.REWARDS_DURATION =  "604800" 
+source = "infinex-governance-points:latest@main"
+
+# ---------- Initialise GP Contracts  ---------- #
+
+[invoke.upgrade]
+code to upgrade....
+
+[invoke.GovernancePointsProxyInitialize]
+target = ["InfinexGovernancePoints.GovernancePointsProxy"]
+func = "initialize"
+args = ["<%= settings.OWNER %>"]
+
+
+# ---------- Setting Post deployment parameters  ---------- #
+
+[invoke.attachSTWCampaign]
+target = ["InfinexGovernancePoints.GovernancePointsProxy"]
+func = "addAuthorisedMinter"
+args = [ "<%= imports.InfinexGovernancePoints.contracts.SpeedrunTheWaitlist.address %>" ]
+from = "<%= settings.OWNER %>"
+
+[invoke.SpeedrunTheWaitlistNotifyRewardAmount]
+target = ["InfinexGovernancePoints.SpeedrunTheWaitlist"]
+func = "notifyRewardAmount"
+args = [ "<%= settings.STWPOINTS %>" ]

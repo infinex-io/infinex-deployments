@@ -1,0 +1,75 @@
+name = "infinex-multichain"
+version = "0.0.10-3"
+preset = "N2O"
+description = "Infinex MultiChain Deployments"
+
+[setting.OWNER]
+defaultValue = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+description = "The Council multisig"
+
+[setting.ACCOUNT_TYPE]
+description = "The code for a account type"
+defaultValue = "1" # Trading is active
+ 
+[setting.WITHDRAWAL_FEE]
+description = "The withdrawal fee"
+defaultValue = "<%= parseEther('1') %>"
+
+[setting.MAKER_FEE]
+description = "The default maker fee"
+defaultValue = "<%= parseEther('0.0002') %>"
+
+[setting.TAKER_FEE]
+description = "The default taker fee"
+defaultValue = "<%= parseEther('0.0005') %>"
+
+# This is used for trading fees
+[setting.ETH_PERPS_MARKET_ID]
+description = "The market ID of the ETH Perps market"
+defaultValue = "100"
+
+[setting.BTC_PERPS_MARKET_ID]
+description = "The market ID of the BTC Perps market"
+defaultValue = "200"
+
+
+[provision.infinex]
+options.SALT = "INFINEX_0_0_10-3"
+options.ACCOUNT_TYPE = "1" # This chain has trading functionality (N2O preset)
+options.OWNER = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.REVENUE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.TRADING_FEE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.MINIMUM_BRIDGE_AMOUNT =  "<%= parseUnits(String(1), 6) %>"
+options.USDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e" # Actual USDC
+# options.USDC = "0x69980C3296416820623b3e3b30703A74e2320bC8" # SNX fUSD required for trading
+options.CIRCLE_BRIDGE = "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
+options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
+options.CIRCLE_BRIDGE_DEST_DOMAIN = "0"
+options.WORMHOLE_CIRCLE_BRIDGE = "0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c"
+options.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM = "10002"
+source = "infinex:latest@N2O"
+
+
+# ---------- Setting Post deployment parameters  ---------- #
+
+# [invoke.setInfinexProtocolConfigBeaconFee]
+# target = ["infinex.InfinexProtocolConfigBeacon"]
+# func = "setFeeConfiguration"
+# args = [     [
+#         { marketId = "<%= settings.ETH_PERPS_MARKET_ID %>", makerFee = "<%= settings.MAKER_FEE %>", takerFee = "<%= settings.TAKER_FEE %>" },
+#         { marketId = "<%= settings.BTC_PERPS_MARKET_ID %>", makerFee = "<%= settings.MAKER_FEE %>", takerFee = "<%= settings.TAKER_FEE %>" },
+#     ],
+#     "<%= settings.WITHDRAWAL_FEE %>",
+#     ]
+# from = "<%= settings.OWNER %>"
+
+
+# [invoke.AccountFactoryInitialize]
+# target = ["infinex.AccountFactory"]
+# func = "initialize"
+# args = [
+#     "<%= imports.infinex.contracts.InfinexProtocolConfigBeacon.address %>",
+#     "<%= imports.infinex.contracts.SynthetixInformationBeacon.address %>",
+#     "<%= settings.ACCOUNT_TYPE %>",
+# ]
+# from = "<%= settings.OWNER %>"

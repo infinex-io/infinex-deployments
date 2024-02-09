@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@usecannon/cli':
-    specifier: 2.10.7-alpha.1
-    version: 2.10.7-alpha.1(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4)
+    specifier: 2.10.8
+    version: 2.10.8(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4)
 
 packages:
 
@@ -811,7 +811,7 @@ packages:
       tslib: 1.14.1
     dev: true
 
-  /@synthetixio/router@3.3.0(@usecannon/builder@2.10.7-alpha.1)(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23):
+  /@synthetixio/router@3.3.0(@usecannon/builder@2.10.8)(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23):
     resolution: {integrity: sha512-I/McfsD2vwQNDATQ43IAyTCRs3kER9S7KiNd2EG0cDErki4qGlwhBV+VNaa+V+TJr9K0tKf2IvT3x7CaXFDSMw==}
     peerDependencies:
       '@usecannon/builder': ^2.0.0
@@ -820,7 +820,7 @@ packages:
       solc: ^0.8.17
     dependencies:
       '@ethersproject/keccak256': 5.7.0
-      '@usecannon/builder': 2.10.7-alpha.1(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4)
+      '@usecannon/builder': 2.10.8(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4)
       debug: 4.3.4(supports-color@8.1.1)
       ethers: 5.7.2
       hardhat: 2.19.3(typescript@5.3.3)
@@ -891,13 +891,11 @@ packages:
       '@types/node': 20.10.5
     dev: true
 
-  /@usecannon/builder@2.10.7-alpha.1(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4):
-    resolution: {integrity: sha512-8n16T14nK75KhH9Up/yEGocpGHt7BBh+xdNWe8QUMQsCucmg4SK1dEVWzjEIBFI8O15YScWJXbkubwMiQ3o0jA==}
+  /@usecannon/builder@2.10.8(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4):
+    resolution: {integrity: sha512-mu4WoasnWONExShm9nO3inuCdFc1phHRsvhAeUjVzyfkSZ7qlq2t7hn3XBNffLACtRBI0t86yTSiCP2JVH5y1Q==}
     engines: {node: '>=16.0.0'}
-    peerDependencies:
-      ethers: '>=5.6.0 < 6.0.0'
     dependencies:
-      '@synthetixio/router': 3.3.0(@usecannon/builder@2.10.7-alpha.1)(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23)
+      '@synthetixio/router': 3.3.0(@usecannon/builder@2.10.8)(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23)
       axios: 1.6.2(debug@4.3.4)
       buffer: 6.0.3
       debug: 4.3.4(supports-color@8.1.1)
@@ -910,20 +908,22 @@ packages:
       typestub-ipfs-only-hash: 4.0.0
       zod: 3.22.4
     transitivePeerDependencies:
+      - bufferutil
       - encoding
       - hardhat
       - solc
       - supports-color
       - typedoc
+      - utf-8-validate
     dev: true
 
-  /@usecannon/cli@2.10.7-alpha.1(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4):
-    resolution: {integrity: sha512-5OIWQSLU/jlzAfXRJuHuQTjov1V49y2Cm9n90rWqOwZOS752FMxrMTcdA3ZifyfTdiQGYt1yx6Z6+MJFOpsfKA==}
+  /@usecannon/cli@2.10.8(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4):
+    resolution: {integrity: sha512-dcp36LdXfQoR4HZapXml+ENtPDB/pEX/XGBcmGdRsu3voZnWVZi2jlmcozURy48VVqJu8ymOt0zA1H3qWsly1Q==}
     hasBin: true
     dependencies:
       '@iarna/toml': 3.0.0
       '@synthetixio/wei': 2.74.4
-      '@usecannon/builder': 2.10.7-alpha.1(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4)
+      '@usecannon/builder': 2.10.8(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4)
       chalk: 4.1.2
       commander: 9.5.0
       debug: 4.3.4(supports-color@8.1.1)
@@ -938,6 +938,8 @@ packages:
       table: 6.8.1
       tildify: 2.0.0
       untildify: 4.0.0
+      znv: 0.4.0(zod@3.22.4)
+      zod: 3.22.4
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -1333,6 +1335,10 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    dev: true
+
+  /colorette@2.0.20:
+    resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
     dev: true
 
   /combined-stream@1.0.8:
@@ -3491,6 +3497,15 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /znv@0.4.0(zod@3.22.4):
+    resolution: {integrity: sha512-6/pGsQhBisLzKdyC90mUCRgYDtCfQ4aQ68sDybexq3GMzqqkp662GH6qIyuCHJC1i72hJPHbWAhccTJVuZUQfA==}
+    peerDependencies:
+      zod: ^3.13.2
+    dependencies:
+      colorette: 2.0.20
+      zod: 3.22.4
     dev: true
 
   /zod@3.22.4:
