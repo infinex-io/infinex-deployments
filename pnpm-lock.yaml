@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@usecannon/builder': 2.10.8
+  '@usecannon/cli': 2.10.8
+  hardhat-cannon: 2.10.8
+
 devDependencies:
   '@usecannon/cli':
     specifier: 2.10.8
@@ -811,18 +816,16 @@ packages:
       tslib: 1.14.1
     dev: true
 
-  /@synthetixio/router@3.3.0(@usecannon/builder@2.10.8)(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23):
-    resolution: {integrity: sha512-I/McfsD2vwQNDATQ43IAyTCRs3kER9S7KiNd2EG0cDErki4qGlwhBV+VNaa+V+TJr9K0tKf2IvT3x7CaXFDSMw==}
+  /@synthetixio/router@3.3.4(@usecannon/builder@2.10.8)(hardhat@2.19.3)(solc@0.8.23):
+    resolution: {integrity: sha512-NuVglL2W6lQPIwu/wyK3MIzFs/+zs/gcqgdhgbD9u0FWtDD2CISPZPGv/QKyyzSzE3ehmFSeN5AbCiYQxyA+NA==}
     peerDependencies:
-      '@usecannon/builder': ^2.0.0
-      ethers: ^5.0.0
+      '@usecannon/builder': 2.10.8
       hardhat: ^2.0.0
       solc: ^0.8.17
     dependencies:
       '@ethersproject/keccak256': 5.7.0
       '@usecannon/builder': 2.10.8(hardhat@2.19.3)(solc@0.8.23)(typedoc@0.25.4)
       debug: 4.3.4(supports-color@8.1.1)
-      ethers: 5.7.2
       hardhat: 2.19.3(typescript@5.3.3)
       mustache: 4.2.0
       solc: 0.8.23
@@ -895,7 +898,7 @@ packages:
     resolution: {integrity: sha512-mu4WoasnWONExShm9nO3inuCdFc1phHRsvhAeUjVzyfkSZ7qlq2t7hn3XBNffLACtRBI0t86yTSiCP2JVH5y1Q==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@synthetixio/router': 3.3.0(@usecannon/builder@2.10.8)(ethers@5.7.2)(hardhat@2.19.3)(solc@0.8.23)
+      '@synthetixio/router': 3.3.4(@usecannon/builder@2.10.8)(hardhat@2.19.3)(solc@0.8.23)
       axios: 1.6.2(debug@4.3.4)
       buffer: 6.0.3
       debug: 4.3.4(supports-color@8.1.1)

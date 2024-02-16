@@ -1,5 +1,5 @@
 name = "infinex-multichain"
-version = "0.0.10-3"
+version = "0.0.11"
 preset = "O2"
 description = "Infinex MultiChain Deployments"
 
@@ -17,8 +17,8 @@ defaultValue = "<%= parseEther('10') %>"
 
 
 [provision.infinex]
-options.SALT = "INFINEX_0_0_10-3"
-options.ACCOUNT_TYPE = "0" # This chain has no trading functionality (O2 preset)
+options.SALT = "INFINEX_0_0_11"
+options.DEPOSIT_BRIDGE_ACTIVE = "true" # deposits on this chain will be auto deployed
 options.OWNER = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
 options.REVENUE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
 options.TRADING_FEE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
@@ -50,7 +50,6 @@ func = "initialize"
 args = [
     "<%= imports.infinex.contracts.InfinexProtocolConfigBeacon.address %>",
     "<%= imports.infinex.contracts.InfinexProtocolConfigBeacon.address %>",
-    "<%= settings.ACCOUNT_TYPE %>",
 ]
 depends = ["provision.infinex"]
 from = "<%= settings.OWNER %>"

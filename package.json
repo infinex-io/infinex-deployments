@@ -11,5 +11,10 @@
   "license": "ISC",
   "devDependencies": {
     "@usecannon/cli": "2.10.8"
+  },
+  "resolutions": {
+    "@usecannon/builder": "2.10.8",
+    "@usecannon/cli": "2.10.8",
+    "hardhat-cannon": "2.10.8"
   }
 }
