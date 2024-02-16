@@ -47,7 +47,7 @@ options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
 options.CIRCLE_BRIDGE_DEST_DOMAIN = "0"
 options.WORMHOLE_CIRCLE_BRIDGE = "0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c"
 options.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM = "10002"
-source = "infinex:latest@N2O"
+source = "infinex:0.0.11@N2O"
 
 
 # ---------- Setting Post deployment parameters  ---------- #
