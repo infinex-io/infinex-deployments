@@ -32,7 +32,7 @@ options.WORMHOLE_DESTINATION_DOMAIN_BASE = "10004"
 # Non Functional parameters - functionality not on this chain
 options.MAKER_FEE = "1"
 options.TAKER_FEE = "1"
-source = "infinex:latest@O2"
+source = "infinex:0.0.11@O2"
 
 # ---------- Setting Post deployment parameters  ---------- #
 
