@@ -2,7 +2,7 @@ name = "infinex-multichain"
 version = "0.0.13"
 preset = "O2"
 description = "Infinex MultiChain Deployments"
-# --chain-id 80001 
+# --chain-id 11155420 
 
 [setting.OWNER]
 defaultValue = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
@@ -23,7 +23,7 @@ options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.REVENUE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.TRADING_FEE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.MINIMUM_BRIDGE_AMOUNT =  "<%= parseUnits(String(0.1), 6) %>"
-options.USDC = "0x9999f7fea5938fd3b1e26a12c3f2fb024e194f97"
+options.USDC = "0x5fd84259d66Cd46123540766Be93DFE6D43130D7"
 options.CIRCLE_BRIDGE = "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
 options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
 options.CIRCLE_BRIDGE_DEST_DOMAIN = "6"

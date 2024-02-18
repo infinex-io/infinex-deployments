@@ -1,10 +1,11 @@
 name = "infinex-multichain"
-version = "0.0.11"
+version = "0.0.13"
 preset = "N2O"
 description = "Infinex MultiChain Deployments"
+#  pnpm cannon build infinex-multichain/testnets/infinex-multichain-base-sepolia.toml --chain-id 84532
 
 [setting.OWNER]
-defaultValue = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+defaultValue = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 description = "The Council multisig"
  
 [setting.WITHDRAWAL_FEE]
@@ -34,11 +35,11 @@ defaultValue = "200"
 
 
 [provision.infinex]
-options.SALT = "INFINEX_0_0_11"
+options.SALT = "INFINEX_0_0_13"
 options.DEPOSIT_BRIDGE_ACTIVE = "false"
-options.OWNER = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
-options.REVENUE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
-options.TRADING_FEE_POOL = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
+options.REVENUE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
+options.TRADING_FEE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.MINIMUM_BRIDGE_AMOUNT =  "<%= parseUnits(String(1), 6) %>"
 options.USDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e" # Actual USDC
 # options.USDC = "0x69980C3296416820623b3e3b30703A74e2320bC8" # SNX fUSDC required for trading
@@ -47,7 +48,7 @@ options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
 options.CIRCLE_BRIDGE_DEST_DOMAIN = "0"
 options.WORMHOLE_CIRCLE_BRIDGE = "0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c"
 options.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM = "10002"
-source = "infinex:0.0.11@N2O"
+source = "infinex:0.0.12@N2O"
 
 
 # ---------- Setting Post deployment parameters  ---------- #

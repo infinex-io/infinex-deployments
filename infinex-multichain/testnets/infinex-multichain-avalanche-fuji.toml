@@ -2,7 +2,7 @@ name = "infinex-multichain"
 version = "0.0.13"
 preset = "O2"
 description = "Infinex MultiChain Deployments"
-# --chain-id 80001 
+# --chain-id 43113 
 
 [setting.OWNER]
 defaultValue = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
@@ -23,11 +23,11 @@ options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.REVENUE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.TRADING_FEE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.MINIMUM_BRIDGE_AMOUNT =  "<%= parseUnits(String(0.1), 6) %>"
-options.USDC = "0x9999f7fea5938fd3b1e26a12c3f2fb024e194f97"
-options.CIRCLE_BRIDGE = "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
-options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
+options.USDC = "0x5425890298aed601595a70ab815c96711a31bc65"
+options.CIRCLE_BRIDGE = "0xeb08f243e5d3fcff26a9e38ae5520a669f4019d0"
+options.CIRCLE_MINTER = "0x4ed8867f9947a5fe140c9dc1c6f207f3489f501e"
 options.CIRCLE_BRIDGE_DEST_DOMAIN = "6"
-options.WORMHOLE_CIRCLE_BRIDGE = "0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c"
+options.WORMHOLE_CIRCLE_BRIDGE = "0x58f4c17449c90665891c42e14d34aae7a26a472e"
 options.WORMHOLE_DESTINATION_DOMAIN_BASE = "10004"
 # Non Functional parameters - functionality not on this chain
 options.MAKER_FEE = "1"
