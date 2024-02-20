@@ -1,46 +1,53 @@
 name = "infinex-gp"
-version = "0.0.2"
+version = "0.0.6"
 preset = "StW"
 description = "Infinex Governance Points Deployments"
 
 [setting.OWNER]
-defaultValue = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
+defaultValue = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 description = "The Council multisig"
 
 [setting.STWPOINTS]
-defaultValue = "330000000"
+defaultValue = "<%= parseEther('33000000') %>"
 description = "The amount of STW points to be distributed"
 
 [provision.InfinexGovernancePoints]
-options.SALT = "INFINEX_0_0_10"
-options.CONTRACT_FACTORY = "0x103c4aC9FdF4d06Fea827Ad1dE6fde669038D39E" 
-options.OWNER = "0xa7DB9b0a95D253022068d43BD1d64756f92eF83C"
-options.INFINEX_FORWARDER = "0x58F2fDbbbBC416e92d961ca36B35260258312095"
+options.SALT = "GP_0_0_6"
+options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
+options.CONTRACT_FACTORY = "0x6aBc354108856B23eFf5DC09d9FcDd45A9296c5c" 
+options.INFINEX_FORWARDER = "0xfC3e186a5B3C2b73a90f27412f44EA4242204bf9"
 options.USDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e" 
 options.PERPS_MARKET_PROXY = "0xE6C5f05C415126E6b81FCc3619f65Db2fCAd58D0"
 options.REWARDS_DURATION =  "604800" 
-source = "infinex-governance-points:latest@main"
+source = "infinex-governance-points:latest@stw"
 
 # ---------- Initialise GP Contracts  ---------- #
 
-[invoke.upgrade]
-code to upgrade....
+# [invoke.upgrade]
+# target = ["InfinexGovernancePoints.GovernancePointsInitialProxy"]
+# func = "upgradeTo"
+# args = ["<%= imports.InfinexGovernancePoints.contracts.GovernancePointsImplementation.address %>"]
+# depends = ["provision.InfinexGovernancePoints"]
+# factory.CoreProxy.abiOf = ["InfinexGovernancePoints.GovernancePointsImplementation"]
+# factory.CoreProxy.event = "Upgraded"
+# factory.CoreProxy.arg = 0
+# factory.CoreProxy.highlight = true
 
 [invoke.GovernancePointsProxyInitialize]
 target = ["InfinexGovernancePoints.GovernancePointsProxy"]
 func = "initialize"
 args = ["<%= settings.OWNER %>"]
 
-
 # ---------- Setting Post deployment parameters  ---------- #
 
 [invoke.attachSTWCampaign]
 target = ["InfinexGovernancePoints.GovernancePointsProxy"]
 func = "addAuthorisedMinter"
-args = [ "<%= imports.InfinexGovernancePoints.contracts.SpeedrunTheWaitlist.address %>" ]
+args = [ "<%= imports.InfinexGovernancePoints.contracts.StWStakingRewards.address %>" ]
 from = "<%= settings.OWNER %>"
+# depends = ["invoke.upgrade"]
 
-[invoke.SpeedrunTheWaitlistNotifyRewardAmount]
-target = ["InfinexGovernancePoints.SpeedrunTheWaitlist"]
+[invoke.StWStakingRewardsNotifyRewardAmount]
+target = ["InfinexGovernancePoints.StWStakingRewards"]
 func = "notifyRewardAmount"
 args = [ "<%= settings.STWPOINTS %>" ]
