@@ -1,5 +1,5 @@
 name = "infinex-multichain"
-version = "0.0.13"
+version = "0.0.14"
 preset = "O2"
 description = "Infinex MultiChain Deployments"
 # --chain-id 421614 
@@ -14,10 +14,10 @@ defaultValue = "0" # does not include trading module
  
 [setting.WITHDRAWAL_FEE]
 description = "The withdrawal fee"
-defaultValue = "<%= parseEther('10') %>"
+defaultValue = "<%= parseEther('1') %>"
 
 [provision.infinex]
-options.SALT = "INFINEX_0_0_13"
+options.SALT = "INFINEX_0_0_14"
 options.DEPOSIT_BRIDGE_ACTIVE = "true" # This chain has no trading functionality (O2 preset)
 options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.REVENUE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
@@ -32,7 +32,7 @@ options.WORMHOLE_DESTINATION_DOMAIN_BASE = "10004"
 # Non Functional parameters - functionality not on this chain
 options.MAKER_FEE = "1"
 options.TAKER_FEE = "1"
-source = "infinex:0.0.12@O2"
+source = "infinex:0.0.13@O2"
 
 # ---------- Setting Post deployment parameters  ---------- #
 
@@ -53,9 +53,3 @@ args = [
 ]
 depends = ["provision.infinex"]
 from = "<%= settings.OWNER %>"
-
-options.WORMHOLE_DESTINATION_DOMAIN_BASE = "10004"
-# Non Functional parameters - functionality not on this chain
-options.MAKER_FEE = "1"
-options.TAKER_FEE = "1"
-source = "infinex:latest@O2"

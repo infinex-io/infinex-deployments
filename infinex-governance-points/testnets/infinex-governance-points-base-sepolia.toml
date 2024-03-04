@@ -1,5 +1,5 @@
 name = "infinex-gp"
-version = "0.0.6"
+version = "0.0.7"
 preset = "StW"
 description = "Infinex Governance Points Deployments"
 
@@ -12,13 +12,14 @@ defaultValue = "<%= parseEther('33000000') %>"
 description = "The amount of STW points to be distributed"
 
 [provision.InfinexGovernancePoints]
-options.SALT = "GP_0_0_6"
+options.SALT = "GP_0_0_7"
 options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
-options.CONTRACT_FACTORY = "0x6aBc354108856B23eFf5DC09d9FcDd45A9296c5c" 
-options.INFINEX_FORWARDER = "0xfC3e186a5B3C2b73a90f27412f44EA4242204bf9"
+options.CONTRACT_FACTORY = "0x0481b51b882cC3b8EB53f7EAaBa2e11762578dD9" 
+options.INFINEX_FORWARDER = "0xA642F586696105e21eb93E8710607a486434838a"
 options.USDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e" 
 options.PERPS_MARKET_PROXY = "0xE6C5f05C415126E6b81FCc3619f65Db2fCAd58D0"
 options.REWARDS_DURATION =  "604800" 
+options.SOLANA_MULTIPLIER = "<%= parseEther('2') %>"
 source = "infinex-governance-points:latest@stw"
 
 # ---------- Initialise GP Contracts  ---------- #
