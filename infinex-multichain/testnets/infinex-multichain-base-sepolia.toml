@@ -1,6 +1,6 @@
 name = "infinex-multichain"
-version = "0.0.14"
-preset = "N2O"
+version = "0.1.0"
+preset = "O2"
 description = "Infinex MultiChain Deployments"
 #  pnpm cannon build infinex-multichain/testnets/infinex-multichain-base-sepolia.toml --chain-id 84532
 
@@ -8,35 +8,73 @@ description = "Infinex MultiChain Deployments"
 defaultValue = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 description = "The Council multisig"
  
-[setting.WITHDRAWAL_FEE]
-description = "The withdrawal fee"
-defaultValue = "<%= parseEther('1') %>"
+[setting.WITHDRAWAL_FEE_USDC]
+description = "The withdrawal fee in USDC"
+defaultValue = "<%= parseUnits(String(1), 6) %>"
 
-[setting.MAKER_FEE]
-description = "The default maker fee"
-defaultValue = "<%= parseEther('0.0002') %>"
+[setting.ETHEREUM_CHAIN_ID_SEPOLIA]
+description = "Chain Id for Ethereum Sepolia"
+type = "number"
+defaultValue = "11155111"
 
-[setting.TAKER_FEE]
-description = "The default taker fee"
-defaultValue = "<%= parseEther('0.0005') %>"
+[setting.AVALANCHE_CHAIN_ID_FUJI]
+description = "Chain Id for Avalanche"
+type = "number"
+defaultValue = "43113"
 
-[setting.GAS_FEE_REBATE]
-description = "The gas fee rebate"
-defaultValue = "<%= parseUnits(String(1), 18) %>"
+[setting.OPTIMISM_CHAIN_ID_SEPOLIA]
+description = "Chain Id for Optimism Sepolia"
+type = "number"
+defaultValue = "11155420"
 
-# This is used for trading fees
-[setting.ETH_PERPS_MARKET_ID]
-description = "The market ID of the ETH Perps market"
-defaultValue = "100"
+[setting.ARBITRUM_CHAIN_ID_SEPOLIA]
+description = "Chain Id for Arbitrum Sepolia"
+type = "number"
+defaultValue = "421614"
 
-[setting.BTC_PERPS_MARKET_ID]
-description = "The market ID of the BTC Perps market"
-defaultValue = "200"
+[setting.BASE_CHAIN_ID_SEPOLIA]
+description = "Chain Id for Ethereum"
+type = "number"
+defaultValue = "84532"
+
+[setting.POLYGON_CHAIN_ID_MUMBAI]
+description = "Chain Id for Ethereum"
+type = "number"
+defaultValue = "80001"
+
+[setting.SOLANA_CHAIN_ID_DEV]
+description = "Chain Id for Ethereum"
+type = "number"
+defaultValue = "1"
+
+[setting.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM_SEPOLIA]
+desctiption = "The Wormhole destination domain of the target chain, Optimism"
+type="number"
+defaultValue = "10002"
+
+[setting.WORMHOLE_DESTINATION_DOMAIN_OPTIMISM_SEPOLIA]
+desctiption = "The Wormhole destination domain of the target chain, Optimism sepolia"
+type="number"
+defaultValue = "10005"
+
+[setting.WORMHOLE_DESTINATION_DOMAIN_ARBITRUM_SEPOLIA]
+desctiption = "The Wormhole destination domain of the target chain, Arbitrum sepolia"
+type="number"
+defaultValue = "10003"
+
+[setting.WORMHOLE_DESTINATION_DOMAIN_BASE_SEPOLIA]
+desctiption = "The Wormhole destination domain of the target chain, Base Sepolia"
+type="number"
+defaultValue = "10004"
+
+[setting.WORMHOLE_DESTINATION_DOMAIN_POLYGON_MUMBAI]
+desctiption = "The Wormhole destination domain of the target chain, Polygon sepolia"
+type="number"
+defaultValue = "10007"
 
 
 [provision.infinex]
-options.SALT = "INFINEX_0_0_14"
-options.DEPOSIT_BRIDGE_ACTIVE = "false"
+options.SALT = "INFINEX_0_1_0"
 options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.REVENUE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.TRADING_FEE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
@@ -47,20 +85,17 @@ options.CIRCLE_BRIDGE = "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
 options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
 options.CIRCLE_BRIDGE_DEST_DOMAIN = "0"
 options.WORMHOLE_CIRCLE_BRIDGE = "0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c"
-options.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM = "10002"
-source = "infinex:0.0.13@N2O"
+options.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM = "10004" # set the default domain to base for keeper bridging
+source = "infinex:0.1.0@O2"
 
 
 # ---------- Setting Post deployment parameters  ---------- #
 
 [invoke.setInfinexProtocolConfigBeaconFee]
 target = ["infinex.InfinexProtocolConfigBeacon"]
-func = "setFeeConfiguration"
-args = [     [
-        { marketId = "<%= settings.ETH_PERPS_MARKET_ID %>", makerFee = "<%= settings.MAKER_FEE %>", takerFee = "<%= settings.TAKER_FEE %>" },
-        { marketId = "<%= settings.BTC_PERPS_MARKET_ID %>", makerFee = "<%= settings.MAKER_FEE %>", takerFee = "<%= settings.TAKER_FEE %>" },
-    ],
-    "<%= settings.WITHDRAWAL_FEE %>",
+func = "setWithdrawalFeeUSDC"
+args = [
+    "<%= settings.WITHDRAWAL_FEE_USDC %>",
     ]
 from = "<%= settings.OWNER %>"
 
@@ -69,13 +104,24 @@ from = "<%= settings.OWNER %>"
 target = ["infinex.AccountFactory"]
 func = "initialize"
 args = [
-    "<%= imports.infinex.contracts.InfinexProtocolConfigBeacon.address %>",
-    "<%= imports.infinex.contracts.SynthetixInformationBeacon.address %>",
+    "<%= imports.infinex.contracts.InfinexProtocolConfigBeacon.address %>"
 ]
 from = "<%= settings.OWNER %>"
 
-[invoke.setInfinexProtocolConfigBeaconGasFee]
+[invoke.setValidChainIdsBatchTestnetEVM]
 target = ["infinex.InfinexProtocolConfigBeacon"]
-func = "setDefaultGasFeeRebate"
-args = ["<%= settings.GAS_FEE_REBATE %>"]
+func = "setIsValidChainIdsBatch"
+args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>","<%= settings.AVALANCHE_CHAIN_ID_FUJI %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"],true,true]
+from = "<%= settings.OWNER %>"
+
+[invoke.setWormholeDestinationDomainBatchTestnetEVM]
+target = ["infinex.InfinexProtocolConfigBeacon"]
+func = "setWormholeDestinationDomainsBatch"
+args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>","<%= settings.AVALANCHE_CHAIN_ID_FUJI %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"], ["<%= settings.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM_SEPOLIA %>","<%= settings.WORMHOLE_DESTINATION_DOMAIN_AVALANCHE %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_OPTIMISM_SEPOLIA %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_ARBITRUM_SEPOLIA %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_BASE_SEPOLIA %>","<%= settings.WORMHOLE_DESTINATION_DOMAIN_POLYGON_MUMBAI %>" ]]
+from = "<%= settings.OWNER %>"
+
+[invoke.setCircleDestinationDomainsBatchTestnetEVM]
+target = ["infinex.InfinexProtocolConfigBeacon"]
+func = "setCircleDestinationDomainsBatch"
+args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>","<%= settings.AVALANCHE_CHAIN_ID_FUJI %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"], ["<%= settings.CIRCLE_DESTINATION_DOMAIN_ETHEREUM %>","<%= settings.CIRCLE_DESTINATION_DOMAIN_AVALANCHE %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_OPTIMISM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_ARBITRUM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_BASE %>","<%= settings.CIRCLE_DESTINATION_DOMAIN_POLYGON %>" ]]
 from = "<%= settings.OWNER %>"
