@@ -13,15 +13,12 @@ description = "The Council multisig"
 description = "The withdrawal fee in USDC"
 defaultValue = "<%= parseUnits(String(1), 6) %>"
 
+# ---- Chain Ids ---- #
+
 [setting.ETHEREUM_CHAIN_ID_SEPOLIA]
 description = "Chain Id for Ethereum Sepolia"
 type = "number"
 defaultValue = "11155111"
-
-[setting.AVALANCHE_CHAIN_ID_FUJI]
-description = "Chain Id for Avalanche"
-type = "number"
-defaultValue = "43113"
 
 [setting.OPTIMISM_CHAIN_ID_SEPOLIA]
 description = "Chain Id for Optimism Sepolia"
@@ -34,32 +31,29 @@ type = "number"
 defaultValue = "421614"
 
 [setting.BASE_CHAIN_ID_SEPOLIA]
-description = "Chain Id for Ethereum"
+description = "Chain Id for Base Sepolia"
 type = "number"
 defaultValue = "84532"
 
 [setting.POLYGON_CHAIN_ID_MUMBAI]
-description = "Chain Id for Ethereum"
+description = "Chain Id for Polygon Mumbai"
 type = "number"
 defaultValue = "80001"
 
-[setting.SOLANA_CHAIN_ID_DEV]
-description = "Chain Id for Ethereum"
-type = "number"
-defaultValue = "1"
+# ---- Wormhole Destination Domains ---- #
 
 [setting.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM_SEPOLIA]
-desctiption = "The Wormhole destination domain of the target chain, Optimism"
+desctiption = "The Wormhole destination domain of the target chain, Ethereum Sepolia"
 type="number"
 defaultValue = "10002"
 
 [setting.WORMHOLE_DESTINATION_DOMAIN_OPTIMISM_SEPOLIA]
-desctiption = "The Wormhole destination domain of the target chain, Optimism sepolia"
+desctiption = "The Wormhole destination domain of the target chain, Optimism Sepolia"
 type="number"
 defaultValue = "10005"
 
 [setting.WORMHOLE_DESTINATION_DOMAIN_ARBITRUM_SEPOLIA]
-desctiption = "The Wormhole destination domain of the target chain, Arbitrum sepolia"
+desctiption = "The Wormhole destination domain of the target chain, Arbitrum Sepolia"
 type="number"
 defaultValue = "10003"
 
@@ -69,10 +63,36 @@ type="number"
 defaultValue = "10004"
 
 [setting.WORMHOLE_DESTINATION_DOMAIN_POLYGON_MUMBAI]
-desctiption = "The Wormhole destination domain of the target chain, Polygon sepolia"
+desctiption = "The Wormhole destination domain of the target chain, Polygon Mumbai"
 type="number"
 defaultValue = "10007"
 
+# ---- Circle Destination Domains ---- # 
+
+[setting.CIRCLE_DESTINATION_DOMAIN_ETHEREUM]
+description = "The Circle destination domain for Ethereum"
+type = "number"
+defaultValue = "0"
+
+[setting.CIRCLE_DESTINATION_DOMAIN_OPTIMISM]
+description = "The Circle destination domain for Optimism"
+type = "number"
+defaultValue = "2"
+
+[setting.CIRCLE_DESTINATION_DOMAIN_ARBITRUM]
+description = "The Circle destination domain for Arbitrum"
+type = "number"
+defaultValue = "3"
+
+[setting.CIRCLE_DESTINATION_DOMAIN_BASE]
+description = "The Circle destination domain for Base"
+type = "number"
+defaultValue = "6"
+
+[setting.CIRCLE_DESTINATION_DOMAIN_POLYGON]
+description = "The Circle destination domain for Polygon"
+type = "number"
+defaultValue = "7"
 
 [provision.infinex]
 options.SALT = "INFINEX_0_1_0"
@@ -109,17 +129,17 @@ from = "<%= settings.OWNER %>"
 [invoke.setValidChainIdsBatchTestnetEVM]
 target = ["infinex.InfinexProtocolConfigBeacon"]
 func = "setIsValidChainIdsBatch"
-args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>","<%= settings.AVALANCHE_CHAIN_ID_FUJI %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"],true,true]
+args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"],true,true]
 from = "<%= settings.OWNER %>"
 
 [invoke.setWormholeDestinationDomainBatchTestnetEVM]
 target = ["infinex.InfinexProtocolConfigBeacon"]
 func = "setWormholeDestinationDomainsBatch"
-args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>","<%= settings.AVALANCHE_CHAIN_ID_FUJI %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"], ["<%= settings.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM_SEPOLIA %>","<%= settings.WORMHOLE_DESTINATION_DOMAIN_AVALANCHE %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_OPTIMISM_SEPOLIA %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_ARBITRUM_SEPOLIA %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_BASE_SEPOLIA %>","<%= settings.WORMHOLE_DESTINATION_DOMAIN_POLYGON_MUMBAI %>" ]]
+args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"], ["<%= settings.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM_SEPOLIA %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_OPTIMISM_SEPOLIA %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_ARBITRUM_SEPOLIA %>", "<%= settings.WORMHOLE_DESTINATION_DOMAIN_BASE_SEPOLIA %>","<%= settings.WORMHOLE_DESTINATION_DOMAIN_POLYGON_MUMBAI %>" ]]
 from = "<%= settings.OWNER %>"
 
 [invoke.setCircleDestinationDomainsBatchTestnetEVM]
 target = ["infinex.InfinexProtocolConfigBeacon"]
 func = "setCircleDestinationDomainsBatch"
-args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>","<%= settings.AVALANCHE_CHAIN_ID_FUJI %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"], ["<%= settings.CIRCLE_DESTINATION_DOMAIN_ETHEREUM %>","<%= settings.CIRCLE_DESTINATION_DOMAIN_AVALANCHE %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_OPTIMISM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_ARBITRUM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_BASE %>","<%= settings.CIRCLE_DESTINATION_DOMAIN_POLYGON %>" ]]
+args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"], ["<%= settings.CIRCLE_DESTINATION_DOMAIN_ETHEREUM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_OPTIMISM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_ARBITRUM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_BASE %>","<%= settings.CIRCLE_DESTINATION_DOMAIN_POLYGON %>" ]]
 from = "<%= settings.OWNER %>"
