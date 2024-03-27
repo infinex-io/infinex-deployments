@@ -95,7 +95,7 @@ defaultValue = "7"
 
 [provision.infinex]
 options.SALT = "INFINEX_0_1_0"
-options.OWNER = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
+options.OWNER = "<%= settings.OWNER %>"
 options.REVENUE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
 options.MINIMUM_BRIDGE_AMOUNT =  "<%= parseUnits(String(1), 6) %>"
 options.USDC = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238"
