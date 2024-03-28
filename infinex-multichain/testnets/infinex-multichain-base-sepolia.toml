@@ -1,13 +1,21 @@
 name = "infinex-multichain"
-version = "0.1.0"
+version = "0.0.19"
 preset = "O2"
 description = "Infinex MultiChain Deployments"
-#  pnpm cannon build infinex-multichain/testnets/infinex-multichain-base-sepolia.toml --chain-id 84532
+# pnpm cannon build infinex-multichain/testnets/infinex-multichain-base-sepolia.toml --chain-id 84532
 
 [setting.OWNER]
 defaultValue = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
-description = "The Council multisig"
+description = "The deployer address to deploy the initial contracts."
  
+[setting.REVENUE_POOL]
+defaultValue = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
+description = "The Revenue Pool"
+
+[setting.MULTI_SIG]
+defaultValue = "0x5A2B4096754Bd094C40A0e89BC7E017fE38e300c"
+description = "The Council Multisig that ownership is transferred to from the owner."
+
 [setting.WITHDRAWAL_FEE_USDC]
 description = "The withdrawal fee in USDC"
 defaultValue = "<%= parseUnits(String(1), 6) %>"
@@ -96,18 +104,15 @@ defaultValue = "7"
 [provision.infinex]
 options.SALT = "INFINEX_0_1_0"
 options.OWNER = "<%= settings.OWNER %>"
-options.REVENUE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
-options.TRADING_FEE_POOL = "0x33FaF56Cb2c854231bdA8De328bbAddcF76D9836"
+options.REVENUE_POOL = "<%= settings.REVENUE_POOL %>"
 options.MINIMUM_BRIDGE_AMOUNT =  "<%= parseUnits(String(1), 6) %>"
-options.USDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e" # Actual USDC
-# options.USDC = "0x69980C3296416820623b3e3b30703A74e2320bC8" # SNX fUSDC required for trading
+options.USDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
 options.CIRCLE_BRIDGE = "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
 options.CIRCLE_MINTER = "0xE997d7d2F6E065a9A93Fa2175E878Fb9081F1f0A"
-options.CIRCLE_BRIDGE_DEST_DOMAIN = "0"
+options.CIRCLE_BRIDGE_DEST_DOMAIN = "6"
 options.WORMHOLE_CIRCLE_BRIDGE = "0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c"
 options.WORMHOLE_DESTINATION_DOMAIN_ETHEREUM = "10004" # set the default domain to base for keeper bridging
-source = "infinex:0.1.0@O2"
-
+source = "infinex:0.0.19@O2"
 
 # ---------- Setting Post deployment parameters  ---------- #
 
@@ -118,7 +123,6 @@ args = [
     "<%= settings.WITHDRAWAL_FEE_USDC %>",
     ]
 from = "<%= settings.OWNER %>"
-
 
 [invoke.AccountFactoryInitialize]
 target = ["infinex.AccountFactory"]
@@ -145,3 +149,18 @@ target = ["infinex.InfinexProtocolConfigBeacon"]
 func = "setCircleDestinationDomainsBatch"
 args = [["<%= settings.ETHEREUM_CHAIN_ID_SEPOLIA %>", "<%= settings.OPTIMISM_CHAIN_ID_SEPOLIA %>", "<%= settings.ARBITRUM_CHAIN_ID_SEPOLIA %>", "<%= settings.BASE_CHAIN_ID_SEPOLIA %>", "<%= settings.POLYGON_CHAIN_ID_MUMBAI %>"], ["<%= settings.CIRCLE_DESTINATION_DOMAIN_ETHEREUM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_OPTIMISM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_ARBITRUM %>", "<%= settings.CIRCLE_DESTINATION_DOMAIN_BASE %>","<%= settings.CIRCLE_DESTINATION_DOMAIN_POLYGON %>" ]]
 from = "<%= settings.OWNER %>"
+
+# invoke the transfer of ownership from the deployer to the multisig
+
+[invoke.transferOwnership]
+target = ["infinex.InfinexProtocolConfigBeacon"]
+func = "transferOwnership"
+args = ["<%= settings.MULTI_SIG %>"]
+from = "<%= settings.OWNER %>"
+
+# invoke the acceptance of the ownership transfer from the multisig
+
+[invoke.acceptOwnership]
+target = ["infinex.InfinexProtocolConfigBeacon"]
+func = "acceptOwnership"
+from = "<%= settings.MULTI_SIG %>"

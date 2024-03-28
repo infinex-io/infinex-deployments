@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@usecannon/cli": "2.11.22"
+    "@usecannon/cli": "2.11.24"
   }
 }
